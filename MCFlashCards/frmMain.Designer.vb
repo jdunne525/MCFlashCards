@@ -49,6 +49,9 @@ Partial Class frmMain
         Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument
         Me.btnPrintPreview = New System.Windows.Forms.Button
+        Me.ApplicationLabel = New System.Windows.Forms.Label
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.Label3 = New System.Windows.Forms.Label
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -70,11 +73,12 @@ Partial Class frmMain
         'TestWordLabel
         '
         Me.TestWordLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TestWordLabel.Location = New System.Drawing.Point(1, 12)
+        Me.TestWordLabel.Location = New System.Drawing.Point(1, 77)
         Me.TestWordLabel.Name = "TestWordLabel"
         Me.TestWordLabel.Size = New System.Drawing.Size(644, 54)
         Me.TestWordLabel.TabIndex = 3
         Me.TestWordLabel.Text = "TestWordLabel"
+        Me.TestWordLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
         'ShowResultTimer
         '
@@ -106,14 +110,15 @@ Partial Class frmMain
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(5, 72)
+        Me.TabControl1.Location = New System.Drawing.Point(1, 134)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(779, 546)
+        Me.TabControl1.Size = New System.Drawing.Size(779, 544)
         Me.TabControl1.TabIndex = 16
         '
         'TabPage1
         '
+        Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TabPage1.Controls.Add(Me.RadioEnglish)
         Me.TabPage1.Controls.Add(Me.RadioPinYin)
         Me.TabPage1.Controls.Add(Me.DataSetLabel)
@@ -126,10 +131,9 @@ Partial Class frmMain
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(771, 520)
+        Me.TabPage1.Size = New System.Drawing.Size(771, 518)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Multiple Choice Cards"
-        Me.TabPage1.UseVisualStyleBackColor = True
         '
         'RadioEnglish
         '
@@ -188,7 +192,7 @@ Partial Class frmMain
         '
         'Card4
         '
-        Me.Card4.BackColor = System.Drawing.Color.LightGray
+        Me.Card4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Card4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Card4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Card4.Location = New System.Drawing.Point(329, 263)
@@ -200,7 +204,7 @@ Partial Class frmMain
         '
         'Card3
         '
-        Me.Card3.BackColor = System.Drawing.Color.LightGray
+        Me.Card3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Card3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Card3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Card3.Location = New System.Drawing.Point(6, 263)
@@ -212,7 +216,7 @@ Partial Class frmMain
         '
         'Card2
         '
-        Me.Card2.BackColor = System.Drawing.Color.LightGray
+        Me.Card2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Card2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Card2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Card2.Location = New System.Drawing.Point(329, 6)
@@ -224,7 +228,7 @@ Partial Class frmMain
         '
         'Card1
         '
-        Me.Card1.BackColor = System.Drawing.Color.LightGray
+        Me.Card1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Card1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Card1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Card1.Location = New System.Drawing.Point(6, 6)
@@ -310,14 +314,50 @@ Partial Class frmMain
         Me.btnPrintPreview.Text = "Print Preview"
         Me.btnPrintPreview.UseVisualStyleBackColor = True
         '
+        'ApplicationLabel
+        '
+        Me.ApplicationLabel.Font = New System.Drawing.Font("Lucida Fax", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ApplicationLabel.Location = New System.Drawing.Point(1, 0)
+        Me.ApplicationLabel.Name = "ApplicationLabel"
+        Me.ApplicationLabel.Size = New System.Drawing.Size(644, 54)
+        Me.ApplicationLabel.TabIndex = 3
+        Me.ApplicationLabel.Text = "Math Facts"
+        Me.ApplicationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 72.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Label2.Location = New System.Drawing.Point(53, -29)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(101, 108)
+        Me.Label2.TabIndex = 18
+        Me.Label2.Text = "+"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 111.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Label3.Location = New System.Drawing.Point(503, -69)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(122, 169)
+        Me.Label3.TabIndex = 19
+        Me.Label3.Text = "-"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(788, 619)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(788, 677)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btnPrintPreview)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.RandomCheckBox)
+        Me.Controls.Add(Me.ApplicationLabel)
         Me.Controls.Add(Me.TestWordLabel)
         Me.Controls.Add(Me.RestartButton)
         Me.Controls.Add(Me.OpenButton)
@@ -357,5 +397,8 @@ Partial Class frmMain
     Friend WithEvents PrintPreviewDialog1 As System.Windows.Forms.PrintPreviewDialog
     Friend WithEvents PrintDocument1 As System.Drawing.Printing.PrintDocument
     Friend WithEvents btnPrintPreview As System.Windows.Forms.Button
+    Friend WithEvents ApplicationLabel As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
 
 End Class

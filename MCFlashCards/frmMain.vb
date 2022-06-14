@@ -23,6 +23,7 @@ Public Class frmMain
     Private CenterGap As Integer
 
     Private Loaded As Boolean = False
+    Private CardColor As Color
 
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -65,6 +66,7 @@ Public Class frmMain
 
         RightMargin = TabControl1.Width - (Card2.Width + Card2.Left) + 10
         CenterGap = Card2.Left - (Card1.Left + Card1.Width)
+        CardColor = Card1.BackColor
 
         Loaded = True
 
@@ -218,10 +220,10 @@ Public Class frmMain
 
     Private Sub ShowResultTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ShowResultTimer.Tick
         ShowResultTimer.Enabled = False
-        Card1.BackColor = Color.LightGray
-        Card2.BackColor = Color.LightGray
-        Card3.BackColor = Color.LightGray
-        Card4.BackColor = Color.LightGray
+        Card1.BackColor = CardColor
+        Card2.BackColor = CardColor
+        Card3.BackColor = CardColor
+        Card4.BackColor = CardColor
         If LastAnswer Then
             If myGame.NextQuestion(True) Then
                 DisplayCards()
@@ -609,5 +611,9 @@ Public Class frmMain
     Private Sub TabControl1_SizeChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabControl1.SizeChanged
         TabPage1.Width = TabControl1.Width
         TabPage1.Height = TabControl1.Height
+    End Sub
+
+    Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label2.Click
+
     End Sub
 End Class
