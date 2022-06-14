@@ -1,4 +1,4 @@
-﻿'.net framework 3.5 required    http://www.microsoft.com/downloads/details.aspx?FamilyID=333325FD-AE52-4E35-B531-508D977D32A6&displaylang=en
+﻿'.net framework 3.5 required      http://www.microsoft.com/downloads/details.aspx?FamilyID=333325FD-AE52-4E35-B531-508D977D32A6&displaylang=en
 
 Public Class frmMain
     Private Initialized As Boolean
@@ -17,6 +17,13 @@ Public Class frmMain
     'Dim FntFC As System.Drawing.Text.PrivateFontCollection
     Private Shared PFC As System.Drawing.Text.PrivateFontCollection
     Private Shared NewFont_FF As Drawing.FontFamily
+
+    Private RightMargin As Integer
+    Private TopBottomMargin As Integer
+    Private CenterGap As Integer
+
+    Private Loaded As Boolean = False
+
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         FileName = Application.StartupPath & "\test.csv"
@@ -55,6 +62,11 @@ Public Class frmMain
         'If System.IO.File.Exists(Application.StartupPath & "\mingliu.TTF") Then
         '    CharacterLabel.Font = CreateFont(Application.StartupPath & "\mingliu.TTF", FontStyle.Regular, 15.75, GraphicsUnit.Pixel)
         'End If
+
+        RightMargin = TabControl1.Width - (Card2.Width + Card2.Left) + 10
+        CenterGap = Card2.Left - (Card1.Left + Card1.Width)
+
+        Loaded = True
 
         LastAnswer = False
         Initialized = True
@@ -565,5 +577,37 @@ Public Class frmMain
         If (Data.NCards Mod 8 <> 0) Then
             NumberOfPagestoPrint = NumberOfPagestoPrint + 1
         End If
+    End Sub
+
+    Private Sub frmMain_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
+        If Loaded Then
+            Card1.Width = (TabControl1.Width - RightMargin - CenterGap) / 2
+            Card2.Width = (TabControl1.Width - RightMargin - CenterGap) / 2
+            Card3.Width = (TabControl1.Width - RightMargin - CenterGap) / 2
+            Card4.Width = (TabControl1.Width - RightMargin - CenterGap) / 2
+
+            Card2.Left = Card1.Left + Card1.Width + CenterGap
+            Card4.Left = Card1.Left + Card1.Width + CenterGap
+
+            Card1.Height = (TabControl1.Height - CenterGap) / 2
+            Card2.Height = (TabControl1.Height - CenterGap) / 2
+            Card3.Height = (TabControl1.Height - CenterGap) / 2
+            Card4.Height = (TabControl1.Height - CenterGap) / 2
+
+            Card3.Top = Card1.Top + Card1.Height + CenterGap
+            Card4.Top = Card1.Top + Card1.Height + CenterGap
+
+
+            'RightMargin()
+        End If
+    End Sub
+
+    Private Sub TabPage1_SizeChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabPage1.SizeChanged
+
+    End Sub
+
+    Private Sub TabControl1_SizeChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabControl1.SizeChanged
+        TabPage1.Width = TabControl1.Width
+        TabPage1.Height = TabControl1.Height
     End Sub
 End Class

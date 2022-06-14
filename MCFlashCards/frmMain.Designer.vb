@@ -101,6 +101,9 @@ Partial Class frmMain
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Location = New System.Drawing.Point(5, 72)
@@ -130,6 +133,7 @@ Partial Class frmMain
         '
         'RadioEnglish
         '
+        Me.RadioEnglish.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioEnglish.AutoSize = True
         Me.RadioEnglish.Location = New System.Drawing.Point(652, 89)
         Me.RadioEnglish.Name = "RadioEnglish"
@@ -140,6 +144,7 @@ Partial Class frmMain
         '
         'RadioPinYin
         '
+        Me.RadioPinYin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadioPinYin.AutoSize = True
         Me.RadioPinYin.Checked = True
         Me.RadioPinYin.Location = New System.Drawing.Point(652, 66)
@@ -152,6 +157,7 @@ Partial Class frmMain
         '
         'DataSetLabel
         '
+        Me.DataSetLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataSetLabel.AutoSize = True
         Me.DataSetLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DataSetLabel.Location = New System.Drawing.Point(649, 33)
@@ -162,6 +168,7 @@ Partial Class frmMain
         '
         'NextDataSet
         '
+        Me.NextDataSet.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.NextDataSet.Location = New System.Drawing.Point(694, 6)
         Me.NextDataSet.Name = "NextDataSet"
         Me.NextDataSet.Size = New System.Drawing.Size(36, 24)
@@ -171,6 +178,7 @@ Partial Class frmMain
         '
         'PrevDataSet
         '
+        Me.PrevDataSet.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PrevDataSet.Location = New System.Drawing.Point(652, 6)
         Me.PrevDataSet.Name = "PrevDataSet"
         Me.PrevDataSet.Size = New System.Drawing.Size(36, 24)
