@@ -25,6 +25,11 @@ Public Class frmMain
     Private Loaded As Boolean = False
     Private CardColor As Color
 
+    Private Streak As Integer = 0
+    Private BestStreak As Integer = 0
+    Private TotalCorrect As Integer = 0
+    Private TotalIncorrect As Integer = 0
+
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         FileName = Application.StartupPath & "\test.csv"
@@ -88,6 +93,11 @@ Public Class frmMain
         End If
         StartGame()
         LoadFlashCard()
+        Streak = 0
+        BestStreak = 0
+        TotalCorrect = 0
+        TotalIncorrect = 0
+        UpdateStats()
     End Sub
 
     Private Sub LoadFile(ByVal FName As String)
@@ -156,6 +166,21 @@ Public Class frmMain
             LastAnswer = myGame.CheckAnswer(PanelNum)
             ShowPanelResult(LastAnswer, PanelNum)
 
+            If (LastAnswer) Then
+                Streak = Streak + 1
+                If (Streak > BestStreak) Then
+                    BestStreak = Streak
+                End If
+
+                TotalCorrect = TotalCorrect + 1
+            Else
+                Streak = 0
+                TotalIncorrect = TotalIncorrect + 1
+            End If
+
+            UpdateStats()
+
+
             'If myGame.CheckAnswer(PanelNum) Then
             '    LastAnswer = True
             '    MsgBox("Correct.")
@@ -170,6 +195,13 @@ Public Class frmMain
             '    MsgBox("Incorrect.")
             'End If
         End If
+    End Sub
+
+    Private Sub UpdateStats()
+        lblBestStreak.Text = BestStreak.ToString()
+        lblStreak.Text = Streak.ToString()
+        lblTotalCorrect.Text = TotalCorrect.ToString()
+        lblTotalIncorrect.Text = TotalIncorrect.ToString()
     End Sub
 
     Private Sub ShowPanelResult(ByVal Correct As Boolean, ByVal PanelNumber As Integer)
@@ -239,6 +271,12 @@ Public Class frmMain
     Private Sub RestartButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RestartButton.Click
         LoadFile(FileName)
         StartGame()
+
+        Streak = 0
+        'BestStreak = 0
+        TotalCorrect = 0
+        TotalIncorrect = 0
+        UpdateStats()
     End Sub
 
     Private Sub RadioPinYin_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioPinYin.Click

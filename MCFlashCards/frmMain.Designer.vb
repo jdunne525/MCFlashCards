@@ -22,36 +22,44 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Me.OpenButton = New System.Windows.Forms.Button
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
-        Me.TestWordLabel = New System.Windows.Forms.Label
+        Me.OpenButton = New System.Windows.Forms.Button()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.TestWordLabel = New System.Windows.Forms.Label()
         Me.ShowResultTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.RestartButton = New System.Windows.Forms.Button
-        Me.RandomCheckBox = New System.Windows.Forms.CheckBox
-        Me.TabControl1 = New System.Windows.Forms.TabControl
-        Me.TabPage1 = New System.Windows.Forms.TabPage
-        Me.RadioEnglish = New System.Windows.Forms.RadioButton
-        Me.RadioPinYin = New System.Windows.Forms.RadioButton
-        Me.DataSetLabel = New System.Windows.Forms.Label
-        Me.NextDataSet = New System.Windows.Forms.Button
-        Me.PrevDataSet = New System.Windows.Forms.Button
-        Me.Card4 = New System.Windows.Forms.Button
-        Me.Card3 = New System.Windows.Forms.Button
-        Me.Card2 = New System.Windows.Forms.Button
-        Me.Card1 = New System.Windows.Forms.Button
-        Me.TabPage2 = New System.Windows.Forms.TabPage
-        Me.lblFlashCardStatus = New System.Windows.Forms.Label
-        Me.btnNextFlashCard = New System.Windows.Forms.Button
-        Me.btnPrevFlashCard = New System.Windows.Forms.Button
-        Me.btnFlashCard = New System.Windows.Forms.Button
-        Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog
-        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument
-        Me.btnPrintPreview = New System.Windows.Forms.Button
-        Me.ApplicationLabel = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
+        Me.RestartButton = New System.Windows.Forms.Button()
+        Me.RandomCheckBox = New System.Windows.Forms.CheckBox()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.RadioEnglish = New System.Windows.Forms.RadioButton()
+        Me.RadioPinYin = New System.Windows.Forms.RadioButton()
+        Me.DataSetLabel = New System.Windows.Forms.Label()
+        Me.NextDataSet = New System.Windows.Forms.Button()
+        Me.PrevDataSet = New System.Windows.Forms.Button()
+        Me.Card4 = New System.Windows.Forms.Button()
+        Me.Card3 = New System.Windows.Forms.Button()
+        Me.Card2 = New System.Windows.Forms.Button()
+        Me.Card1 = New System.Windows.Forms.Button()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.lblFlashCardStatus = New System.Windows.Forms.Label()
+        Me.btnNextFlashCard = New System.Windows.Forms.Button()
+        Me.btnPrevFlashCard = New System.Windows.Forms.Button()
+        Me.btnFlashCard = New System.Windows.Forms.Button()
+        Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
+        Me.btnPrintPreview = New System.Windows.Forms.Button()
+        Me.ApplicationLabel = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblStreak = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblBestStreak = New System.Windows.Forms.Label()
+        Me.lblTotalIncorrect = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.lblTotalCorrect = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -106,8 +114,8 @@ Partial Class frmMain
         'TabControl1
         '
         Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Location = New System.Drawing.Point(1, 134)
@@ -247,7 +255,7 @@ Partial Class frmMain
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(771, 520)
+        Me.TabPage2.Size = New System.Drawing.Size(771, 518)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "FlashCards"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -323,6 +331,7 @@ Partial Class frmMain
         Me.ApplicationLabel.TabIndex = 3
         Me.ApplicationLabel.Text = "Math Facts"
         Me.ApplicationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ApplicationLabel.Visible = False
         '
         'Label2
         '
@@ -334,6 +343,7 @@ Partial Class frmMain
         Me.Label2.Size = New System.Drawing.Size(101, 108)
         Me.Label2.TabIndex = 18
         Me.Label2.Text = "+"
+        Me.Label2.Visible = False
         '
         'Label3
         '
@@ -345,6 +355,79 @@ Partial Class frmMain
         Me.Label3.Size = New System.Drawing.Size(122, 169)
         Me.Label3.TabIndex = 19
         Me.Label3.Text = "-"
+        Me.Label3.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(671, 74)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(41, 13)
+        Me.Label1.TabIndex = 20
+        Me.Label1.Text = "Streak:"
+        '
+        'lblStreak
+        '
+        Me.lblStreak.AutoSize = True
+        Me.lblStreak.Location = New System.Drawing.Point(719, 74)
+        Me.lblStreak.Name = "lblStreak"
+        Me.lblStreak.Size = New System.Drawing.Size(13, 13)
+        Me.lblStreak.TabIndex = 21
+        Me.lblStreak.Text = "0"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(647, 87)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(65, 13)
+        Me.Label4.TabIndex = 22
+        Me.Label4.Text = "Best Streak:"
+        '
+        'lblBestStreak
+        '
+        Me.lblBestStreak.AutoSize = True
+        Me.lblBestStreak.Location = New System.Drawing.Point(719, 87)
+        Me.lblBestStreak.Name = "lblBestStreak"
+        Me.lblBestStreak.Size = New System.Drawing.Size(13, 13)
+        Me.lblBestStreak.TabIndex = 21
+        Me.lblBestStreak.Text = "0"
+        '
+        'lblTotalIncorrect
+        '
+        Me.lblTotalIncorrect.AutoSize = True
+        Me.lblTotalIncorrect.Location = New System.Drawing.Point(719, 100)
+        Me.lblTotalIncorrect.Name = "lblTotalIncorrect"
+        Me.lblTotalIncorrect.Size = New System.Drawing.Size(13, 13)
+        Me.lblTotalIncorrect.TabIndex = 21
+        Me.lblTotalIncorrect.Text = "0"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(634, 100)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(79, 13)
+        Me.Label6.TabIndex = 22
+        Me.Label6.Text = "Total Incorrect:"
+        '
+        'lblTotalCorrect
+        '
+        Me.lblTotalCorrect.AutoSize = True
+        Me.lblTotalCorrect.Location = New System.Drawing.Point(719, 113)
+        Me.lblTotalCorrect.Name = "lblTotalCorrect"
+        Me.lblTotalCorrect.Size = New System.Drawing.Size(13, 13)
+        Me.lblTotalCorrect.TabIndex = 21
+        Me.lblTotalCorrect.Text = "0"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(634, 113)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(71, 13)
+        Me.Label8.TabIndex = 22
+        Me.Label8.Text = "Total Correct:"
         '
         'frmMain
         '
@@ -352,6 +435,14 @@ Partial Class frmMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(788, 677)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.lblTotalCorrect)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.lblTotalIncorrect)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.lblBestStreak)
+        Me.Controls.Add(Me.lblStreak)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btnPrintPreview)
@@ -400,5 +491,12 @@ Partial Class frmMain
     Friend WithEvents ApplicationLabel As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-
+    Friend WithEvents Label1 As Label
+    Friend WithEvents lblStreak As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents lblBestStreak As Label
+    Friend WithEvents lblTotalIncorrect As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents lblTotalCorrect As Label
+    Friend WithEvents Label8 As Label
 End Class
