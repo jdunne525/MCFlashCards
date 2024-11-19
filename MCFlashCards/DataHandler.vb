@@ -35,6 +35,7 @@ Public Class DataHandler
         Dim CardNum As Integer
         Dim question As String
         Dim answer As String
+        Dim WrongAnswers(3) As String
 
         CardNum = 0
 
@@ -71,12 +72,27 @@ Public Class DataHandler
                 MsgBox("Error reading file.. continuing anyway..")
                 Exit Do
             End If
+            'clear WrongAnswers:
+            For i = 0 To 2
+                WrongAnswers(i) = ""
+            Next
+
+            'read in the incorrect answers in the next 3 columns if they exists
+            If (StringData.GetUpperBound(0) >= 2) Then
+                WrongAnswers(0) = StringData(2)
+            End If
+            If (StringData.GetUpperBound(0) >= 3) Then
+                WrongAnswers(1) = StringData(3)
+            End If
+            If (StringData.GetUpperBound(0) >= 4) Then
+                WrongAnswers(2) = StringData(4)
+            End If
 
             Cards(CardNum) = New Item
             'Cards(CardNum).Question = StringData(0)
             'Cards(CardNum).Characters = StringData(1)  '->2
             'Cards(CardNum).Answer = StringData(3)  '->1
-            SetCard(CardNum, question, answer)
+            SetCard(CardNum, question, answer, WrongAnswers(0), WrongAnswers(1), WrongAnswers(2))
             CardNum = CardNum + 1
         Loop
 
@@ -171,7 +187,7 @@ Public Class DataHandler
                 'Cards(CardNum).Question = StringData(0)
                 'Cards(CardNum).Characters = StringData(1)  '->2
                 'Cards(CardNum).Answer = StringData(3)  '->1
-                SetCard(CardNum, question, answer)
+                SetCard(CardNum, question, answer, "", "", "")
                 CardNum = CardNum + 1
             End If
         End While
@@ -191,11 +207,25 @@ Public Class DataHandler
         End If
     End Sub
 
-    Private Sub SetCard(ByVal Index As Integer, ByVal Ques As String, ByVal Ans As String)
+    Private Sub SetCard(ByVal Index As Integer, ByVal Ques As String, ByVal Ans As String, ByVal Wrong0 As String, ByVal Wrong1 As String, ByVal Wrong2 As String)
         Cards(Index).Index = Index
         Cards(Index).Question = Ques
         Cards(Index).Answer = Ans
         'Cards(Index).Characters = Chr
+        Cards(Index).WrongAnswers(0) = Wrong0
+        Cards(Index).WrongAnswers(1) = Wrong1
+        Cards(Index).WrongAnswers(2) = Wrong2
+
+        'count how many wrong answers we have:
+        Cards(Index).NWrongAnswers = 0
+        For i = 0 To 2
+            If Cards(Index).WrongAnswers(i) <> "" Then
+                Cards(Index).NWrongAnswers = Cards(Index).NWrongAnswers + 1
+            Else
+                'exit at the first empty string
+                Exit For
+            End If
+        Next
     End Sub
 
 End Class

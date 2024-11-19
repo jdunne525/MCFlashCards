@@ -27,8 +27,10 @@ Public Class frmMain
 
     Private Streak As Integer = 0
     Private BestStreak As Integer = 0
-    Private TotalCorrect As Integer = 0
+    Private TotalFirstTryCorrect As Integer = 0
+    Private TotalCompleted As Integer = 0
     Private TotalIncorrect As Integer = 0
+    Private Attempts As Integer = 0
 
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -95,8 +97,10 @@ Public Class frmMain
         LoadFlashCard()
         Streak = 0
         BestStreak = 0
-        TotalCorrect = 0
+        TotalFirstTryCorrect = 0
+        TotalCompleted = 0
         TotalIncorrect = 0
+        Attempts = 0
         UpdateStats()
     End Sub
 
@@ -139,12 +143,56 @@ Public Class frmMain
     End Sub
 
     Private Sub DisplayCards()
+        Dim ThisCardSet(4 - 1) As String
+        Dim i As Integer
+
         If myGame.GameRunning Then
             If RadioPinYin.Checked Then
-                Card1.Text = myGame.CardsToDisplay(0).Answer
-                Card2.Text = myGame.CardsToDisplay(1).Answer
-                Card3.Text = myGame.CardsToDisplay(2).Answer
-                Card4.Text = myGame.CardsToDisplay(3).Answer
+
+                'Start with the initial set of answer cards based on the imported cards
+                ThisCardSet(0) = myGame.CardsToDisplay(0).Answer
+                ThisCardSet(1) = myGame.CardsToDisplay(1).Answer
+                ThisCardSet(2) = myGame.CardsToDisplay(2).Answer
+                ThisCardSet(3) = myGame.CardsToDisplay(3).Answer
+
+                'if the answer card has wrong answers listed, use them instead of other cards
+                If (myGame.AnswerToDisplay.NWrongAnswers > 0) Then
+                    'RandomizeArray
+
+                    'find the correct answer in the cards
+                    Dim correctAnswerIndex As Integer
+                    correctAnswerIndex = -1
+                    For i = 0 To myGame.CardsToDisplay.Length - 1
+                        If (myGame.CardsToDisplay(i).Answer = myGame.AnswerToDisplay.Answer And
+                            myGame.CardsToDisplay(i).Question = myGame.AnswerToDisplay.Question) Then
+                            correctAnswerIndex = i
+                            Exit For
+                        End If
+                    Next
+                    If (correctAnswerIndex = -1) Then
+                        MsgBox("No correct answer found.")
+                    End If
+
+                    'replace answers other than the correct one with Wrong answers from our answer card
+                    Dim WrongAnswerIndex As Integer
+                    WrongAnswerIndex = 0
+                    For i = 0 To myGame.CardsToDisplay.Length - 1
+                        If (i <> correctAnswerIndex) Then
+                            ThisCardSet(i) = myGame.AnswerToDisplay.WrongAnswers(WrongAnswerIndex)
+                            WrongAnswerIndex = WrongAnswerIndex + 1
+                        End If
+                    Next
+
+                End If
+
+                'randomize the cards before displaying:
+                RandomizeArray(ThisCardSet)
+
+                Card1.Text = ThisCardSet(0)
+                Card2.Text = ThisCardSet(1)
+                Card3.Text = ThisCardSet(2)
+                Card4.Text = ThisCardSet(3)
+
                 'CharacterLabel.Text = myGame.AnswerToDisplay.Characters
                 TestWordLabel.Text = myGame.AnswerToDisplay.Question
             Else
@@ -157,13 +205,65 @@ Public Class frmMain
             End If
 
             DataSetLabel.Text = "Data Set: " & myGame.CurrentItemSet + 1 & "/" & myGame.NItemSetsInData + myGame.NumberOfRndItemSets
+            Attempts = 0
         End If
     End Sub
+
+    Private Sub RandomizeArray(ByRef arr As String())
+        Dim i As Integer
+        Dim j As Integer
+        Dim temp As String
+        For count = 1 To 10
+            Dim max_index As Integer = arr.Length - 1
+            'Dim rnd As New Random
+            For i = 0 To max_index - 1
+                ' Pick an item for position i.
+                j = RandomNumber(i, max_index + 1)
+
+                ' Swap them.
+                temp = arr(i)
+                arr(i) = arr(j)
+                arr(j) = temp
+            Next i
+        Next
+    End Sub
+
+    'MinNumber is inclusive and MaxNumber is exclusive
+    Private Function RandomNumber(ByVal MaxNumber As Integer,
+        Optional ByVal MinNumber As Integer = 0) As Integer
+
+        'initialize random number generator
+        Dim r As New Random(System.DateTime.Now.Millisecond)
+
+        'if passed incorrect arguments, swap them
+        'can also throw exception or return 0
+
+        If MinNumber > MaxNumber Then
+            Dim t As Integer = MinNumber
+            MinNumber = MaxNumber
+            MaxNumber = t
+        End If
+
+        Return r.Next(MinNumber, MaxNumber)       'MaxNumber is Exclusive in this call!!
+
+    End Function
+
 
     Private Sub PanelClicked(ByVal PanelNum As Integer)
         If myGame.GameRunning Then
 
-            LastAnswer = myGame.CheckAnswer(PanelNum)
+            Dim AnswerClicked As String = ""
+            If (PanelNum = 1) Then
+                AnswerClicked = Card1.Text
+            ElseIf (PanelNum = 2) Then
+                AnswerClicked = Card2.Text
+            ElseIf (PanelNum = 3) Then
+                AnswerClicked = Card3.Text
+            ElseIf (PanelNum = 4) Then
+                AnswerClicked = Card4.Text
+            End If
+
+            LastAnswer = myGame.CheckAnswer(AnswerClicked)
             ShowPanelResult(LastAnswer, PanelNum)
 
             If (LastAnswer) Then
@@ -172,10 +272,14 @@ Public Class frmMain
                     BestStreak = Streak
                 End If
 
-                TotalCorrect = TotalCorrect + 1
+                If (Attempts = 0) Then
+                    TotalFirstTryCorrect = TotalFirstTryCorrect + 1
+                End If
+                TotalCompleted = TotalCompleted + 1
             Else
                 Streak = 0
                 TotalIncorrect = TotalIncorrect + 1
+                Attempts = Attempts + 1
             End If
 
             UpdateStats()
@@ -200,8 +304,11 @@ Public Class frmMain
     Private Sub UpdateStats()
         lblBestStreak.Text = BestStreak.ToString()
         lblStreak.Text = Streak.ToString()
-        lblTotalCorrect.Text = TotalCorrect.ToString()
+        lblTotalCompleted.Text = TotalCompleted.ToString()
         lblTotalIncorrect.Text = TotalIncorrect.ToString()
+
+        'Convert to percentage and round to 0 decimal places
+        lblFirstTryCorrect.Text = (TotalFirstTryCorrect / TotalCompleted * 100).ToString("0")
     End Sub
 
     Private Sub ShowPanelResult(ByVal Correct As Boolean, ByVal PanelNumber As Integer)
@@ -274,8 +381,10 @@ Public Class frmMain
 
         Streak = 0
         'BestStreak = 0
-        TotalCorrect = 0
+        TotalFirstTryCorrect = 0
         TotalIncorrect = 0
+        TotalCompleted = 0
+        FlashCardIndex = 0
         UpdateStats()
     End Sub
 
@@ -653,5 +762,17 @@ Public Class frmMain
 
     Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label2.Click
 
+    End Sub
+
+
+    Private Sub btnFlashCard_MouseUp(sender As Object, e As MouseEventArgs) Handles btnFlashCard.MouseUp
+        'if right mouse button clicked go to the next card
+        If e.Button = MouseButtons.Right Then
+            ShowQuestion = True
+            If (FlashCardIndex < Data.NCards - 1) Then
+                FlashCardIndex = FlashCardIndex + 1
+            End If
+            LoadFlashCard()
+        End If
     End Sub
 End Class

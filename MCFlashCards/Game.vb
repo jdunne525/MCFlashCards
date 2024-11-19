@@ -2,6 +2,8 @@
     Public GameRunning As Boolean
     Public AnswerToDisplay As Item
     Public CardsToDisplay(3) As Item
+
+    Public CardsDisplayed(3) As Item
     Public CurrentItemSet As Integer
     Public NumberOfRndItemSets As Integer
     Public AllRandom As Boolean
@@ -183,10 +185,10 @@
         Return NextQuestion(False)
     End Function
 
-    Public Function CheckAnswer(ByVal Index As Integer)
+    Public Function CheckAnswer(ByVal AnswerClicked As String)
         'If CardsToDisplay(Index - 1).Index = AnswerToDisplay.Index Then
         'Check that the answer is correct, not just that it's the exact matching card we were looking for:
-        If CardsToDisplay(Index - 1).Answer = AnswerToDisplay.Answer Then
+        If AnswerClicked = AnswerToDisplay.Answer Then
             Return True
         Else
             Return False

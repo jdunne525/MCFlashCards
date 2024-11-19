@@ -58,8 +58,10 @@ Partial Class frmMain
         Me.lblBestStreak = New System.Windows.Forms.Label()
         Me.lblTotalIncorrect = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.lblTotalCorrect = New System.Windows.Forms.Label()
+        Me.lblTotalCompleted = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lblFirstTryCorrect = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -118,10 +120,10 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(1, 134)
+        Me.TabControl1.Location = New System.Drawing.Point(1, 150)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(779, 544)
+        Me.TabControl1.Size = New System.Drawing.Size(779, 549)
         Me.TabControl1.TabIndex = 16
         '
         'TabPage1
@@ -139,7 +141,7 @@ Partial Class frmMain
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(771, 518)
+        Me.TabPage1.Size = New System.Drawing.Size(771, 523)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Multiple Choice Cards"
         '
@@ -255,7 +257,7 @@ Partial Class frmMain
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(771, 518)
+        Me.TabPage2.Size = New System.Drawing.Size(771, 523)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "FlashCards"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -360,7 +362,7 @@ Partial Class frmMain
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(671, 74)
+        Me.Label1.Location = New System.Drawing.Point(719, 70)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(41, 13)
         Me.Label1.TabIndex = 20
@@ -369,7 +371,7 @@ Partial Class frmMain
         'lblStreak
         '
         Me.lblStreak.AutoSize = True
-        Me.lblStreak.Location = New System.Drawing.Point(719, 74)
+        Me.lblStreak.Location = New System.Drawing.Point(767, 70)
         Me.lblStreak.Name = "lblStreak"
         Me.lblStreak.Size = New System.Drawing.Size(13, 13)
         Me.lblStreak.TabIndex = 21
@@ -378,7 +380,7 @@ Partial Class frmMain
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(647, 87)
+        Me.Label4.Location = New System.Drawing.Point(695, 83)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(65, 13)
         Me.Label4.TabIndex = 22
@@ -387,7 +389,7 @@ Partial Class frmMain
         'lblBestStreak
         '
         Me.lblBestStreak.AutoSize = True
-        Me.lblBestStreak.Location = New System.Drawing.Point(719, 87)
+        Me.lblBestStreak.Location = New System.Drawing.Point(767, 83)
         Me.lblBestStreak.Name = "lblBestStreak"
         Me.lblBestStreak.Size = New System.Drawing.Size(13, 13)
         Me.lblBestStreak.TabIndex = 21
@@ -396,7 +398,7 @@ Partial Class frmMain
         'lblTotalIncorrect
         '
         Me.lblTotalIncorrect.AutoSize = True
-        Me.lblTotalIncorrect.Location = New System.Drawing.Point(719, 100)
+        Me.lblTotalIncorrect.Location = New System.Drawing.Point(762, 111)
         Me.lblTotalIncorrect.Name = "lblTotalIncorrect"
         Me.lblTotalIncorrect.Size = New System.Drawing.Size(13, 13)
         Me.lblTotalIncorrect.TabIndex = 21
@@ -405,38 +407,58 @@ Partial Class frmMain
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(634, 100)
+        Me.Label6.Location = New System.Drawing.Point(677, 111)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(79, 13)
         Me.Label6.TabIndex = 22
         Me.Label6.Text = "Total Incorrect:"
         '
-        'lblTotalCorrect
+        'lblTotalCompleted
         '
-        Me.lblTotalCorrect.AutoSize = True
-        Me.lblTotalCorrect.Location = New System.Drawing.Point(719, 113)
-        Me.lblTotalCorrect.Name = "lblTotalCorrect"
-        Me.lblTotalCorrect.Size = New System.Drawing.Size(13, 13)
-        Me.lblTotalCorrect.TabIndex = 21
-        Me.lblTotalCorrect.Text = "0"
+        Me.lblTotalCompleted.AutoSize = True
+        Me.lblTotalCompleted.Location = New System.Drawing.Point(762, 124)
+        Me.lblTotalCompleted.Name = "lblTotalCompleted"
+        Me.lblTotalCompleted.Size = New System.Drawing.Size(13, 13)
+        Me.lblTotalCompleted.TabIndex = 21
+        Me.lblTotalCompleted.Text = "0"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(634, 113)
+        Me.Label8.Location = New System.Drawing.Point(677, 124)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(71, 13)
+        Me.Label8.Size = New System.Drawing.Size(87, 13)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Total Correct:"
+        Me.Label8.Text = "Total Completed:"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(662, 98)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(92, 13)
+        Me.Label5.TabIndex = 24
+        Me.Label5.Text = "First Try Correct %"
+        '
+        'lblFirstTryCorrect
+        '
+        Me.lblFirstTryCorrect.AutoSize = True
+        Me.lblFirstTryCorrect.Location = New System.Drawing.Point(762, 98)
+        Me.lblFirstTryCorrect.Name = "lblFirstTryCorrect"
+        Me.lblFirstTryCorrect.Size = New System.Drawing.Size(13, 13)
+        Me.lblFirstTryCorrect.TabIndex = 23
+        Me.lblFirstTryCorrect.Text = "0"
         '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(788, 677)
+        Me.ClientSize = New System.Drawing.Size(788, 704)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.lblFirstTryCorrect)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.lblTotalCorrect)
+        Me.Controls.Add(Me.lblTotalCompleted)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lblTotalIncorrect)
         Me.Controls.Add(Me.Label4)
@@ -497,6 +519,8 @@ Partial Class frmMain
     Friend WithEvents lblBestStreak As Label
     Friend WithEvents lblTotalIncorrect As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents lblTotalCorrect As Label
+    Friend WithEvents lblTotalCompleted As Label
     Friend WithEvents Label8 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents lblFirstTryCorrect As Label
 End Class
