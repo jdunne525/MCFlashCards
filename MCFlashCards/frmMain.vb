@@ -114,11 +114,14 @@ Public Class frmMain
 
         'Load file with DataHandler class:
         Data.LoadFile(FileName)
+
         If Data.NCards < 4 Then
-            MsgBox("Not enough cards to play")
+            If Data.Cards(0).NWrongAnswers <= 0 Then
+                MsgBox("Not enough cards to play")
+            End If
         End If
-        'Me.Text = "MC Flash Cards - " & System.IO.Path.GetFileNameWithoutExtension(FileName)
-        Me.Text = "MC Flash Cards - " & Data.Description
+            'Me.Text = "MC Flash Cards - " & System.IO.Path.GetFileNameWithoutExtension(FileName)
+            Me.Text = "MC Flash Cards - " & Data.Description
     End Sub
 
     Public Sub LoadFlashCard()
@@ -277,6 +280,55 @@ Public Class frmMain
                 End If
                 TotalCompleted = TotalCompleted + 1
             Else
+                If (Attempts = 0) Then
+                    'Save incorrect answer to csv file
+                    'name the file by adding a _incorrect suffix to the filename
+                    Dim ErrorFileNoIncorrect As String = FileName.Replace("_incorrect.csv", ".csv")
+                    Dim ErrorFile = ErrorFileNoIncorrect.Replace(".csv", "_incorrect.csv")
+
+                    'check if FileName exists
+                    If (Not System.IO.File.Exists(ErrorFile)) Then
+                        'Create a header
+                        'extract the name of the file from the full path
+                        Dim FileNameWithoutPath As String = ErrorFileNoIncorrect.Substring(ErrorFileNoIncorrect.LastIndexOf("\") + 1)
+                        Dim header As String = FileNameWithoutPath + " Problematic Questions"
+
+                        'write the header to the file
+                        Dim fso1 As New System.IO.FileStream(ErrorFile, System.IO.FileMode.Create, System.IO.FileAccess.Write)
+                        Dim sw1 As New System.IO.StreamWriter(fso1)
+                        sw1.WriteLine(header)
+                        sw1.Close()
+                        fso1.Close()
+                    End If
+
+                    Dim fso As New System.IO.FileStream(ErrorFile, System.IO.FileMode.Append, System.IO.FileAccess.Write)
+                    Dim sw As New System.IO.StreamWriter(fso)
+
+                    Dim IncorrectAnswers(4 - 1) As String
+                    Dim CardsDisplayed(4 - 1) As String
+                    CardsDisplayed(0) = Card1.Text
+                    CardsDisplayed(1) = Card2.Text
+                    CardsDisplayed(2) = Card3.Text
+                    CardsDisplayed(3) = Card4.Text
+
+                    'Figure out which are the incorrect answers of those shown.  Check agains myGame.AnswerToDisplay.Answer
+                    For i As Integer = 0 To 4 - 1
+                        If (CardsDisplayed(i) <> myGame.AnswerToDisplay.Answer) Then
+                            IncorrectAnswers(i) = CardsDisplayed(i)
+                        End If
+                    Next
+
+                    'sw.WriteLine(Line)
+                    'sw.WriteLine("""" + TestWordLabel.Text + """,""" + Card1.Text + """,""" + Card2.Text + """,""" + Card3.Text + """,""" + Card4.Text + """")
+                    'sw.WriteLine(myGame.AnswerToDisplay.Question + "," + myGame.AnswerToDisplay.Answer + "," + Card2.Text + "," + Card3.Text + "," + Card4.Text)
+                    sw.WriteLine(myGame.AnswerToDisplay.Question + "," + myGame.AnswerToDisplay.Answer + "," + IncorrectAnswers(0) + "," + IncorrectAnswers(1) + "," + IncorrectAnswers(2))
+
+                    sw.Close()
+                    fso.Close()
+
+
+                End If
+
                 Streak = 0
                 TotalIncorrect = TotalIncorrect + 1
                 Attempts = Attempts + 1
@@ -367,6 +419,23 @@ Public Class frmMain
             If myGame.NextQuestion(True) Then
                 DisplayCards()
             Else
+                'save results to csv file
+                Dim FileName As String = Application.StartupPath & "\results.csv"
+
+                'lblBestStreak.Text = BestStreak.ToString()
+                'lblStreak.Text = Streak.ToString()
+                'lblTotalCompleted.Text = TotalCompleted.ToString()
+                'lblTotalIncorrect.Text = TotalIncorrect.ToString()
+
+                ''Convert to percentage and round to 0 decimal places
+                'lblFirstTryCorrect.Text = (TotalFirstTryCorrect / TotalCompleted * 100).ToString("0")
+
+                Dim header As String
+                Dim result As String
+                header = "FileName,Time,FirstTryCorrect,BestStreak,Streak,TotalCompleted,TotalIncorrect"
+                result = FileName + "," + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "," + (TotalFirstTryCorrect / TotalCompleted * 100).ToString("0") + "," + BestStreak.ToString() + "," + Streak.ToString() + "," + TotalCompleted.ToString() + "," + TotalIncorrect.ToString()
+                myGame.SaveResults(FileName, header, result)
+
                 MsgBox("Done.")
                 'restart:
                 LoadFile(FileName)

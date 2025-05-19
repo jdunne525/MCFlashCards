@@ -6,15 +6,31 @@ MCFlashCards
 </name>
 </assembly>
 <members>
+<member name="T:MCFlashCards.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:MCFlashCards.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:MCFlashCards.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
 <member name="M:MCFlashCards.frmMain.CreateFont(System.String,System.Drawing.FontStyle,System.Single,System.Drawing.GraphicsUnit)">
-	<summary>
+ <summary>
  Function to return a new font based on the font file passed to it
  </summary>
-	<param name="name">Path to the new font file</param>
-	<param name="style">The FontStyle of the new font</param>
-	<param name="size">T size of the new font</param>
-	<returns>A new font</returns>
-	<remarks></remarks>
+ <param name="name">Path to the new font file</param>
+ <param name="style">The FontStyle of the new font</param>
+ <param name="size">T size of the new font</param>
+ <returns>A new font</returns>
+ <remarks></remarks>
 </member>
 </members>
 </doc>

@@ -142,6 +142,7 @@
         'Dim rnd As New Random
         Dim NewCard As Integer
         Dim Cards(Number - 1) As Integer
+        Dim Attempts As Integer
 
         If Number = 0 Then Return
 
@@ -151,9 +152,17 @@
 
         Cards(0) = RandomNumber(0, LastItem + 1)            'pick one of the previous cards
         For i = 1 To Number - 1
+            Attempts = 0
             Do
+                Attempts = Attempts + 1
                 NewCard = RandomNumber(0, LastItem)
                 For j = 0 To i - 1
+                    If Attempts >= 50 Then
+                        'possible infinite loop.  Just give up.
+                        Cards(i) = NewCard
+                        Exit Do
+                    End If
+
                     If NewCard = Cards(j) Then
                         Continue Do                 'try again.  It's a dupe
                     End If
@@ -245,5 +254,28 @@
         Return r.Next(MinNumber, MaxNumber)       'MaxNumber is Exclusive in this call!!
 
     End Function
+
+    Public Sub SaveResults(filename As String, header As String, Line As String)
+        'Save results to csv file
+        'Append to existing file
+        'check if the file exists and if not, create it and append the header
+
+        If Not System.IO.File.Exists(filename) Then
+            Dim fso1 As New System.IO.FileStream(filename, System.IO.FileMode.Create, System.IO.FileAccess.Write)
+            Dim sw1 As New System.IO.StreamWriter(fso1)
+            sw1.WriteLine(header)
+            sw1.Close()
+            fso1.Close()
+        End If
+
+        Dim fso As New System.IO.FileStream(filename, System.IO.FileMode.Append, System.IO.FileAccess.Write)
+        Dim sw As New System.IO.StreamWriter(fso)
+
+        sw.WriteLine(Line)
+        sw.Close()
+        fso.Close()
+
+
+    End Sub
 
 End Class

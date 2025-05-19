@@ -183,6 +183,7 @@ Partial Class frmMain
         'NextDataSet
         '
         Me.NextDataSet.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.NextDataSet.Enabled = False
         Me.NextDataSet.Location = New System.Drawing.Point(694, 6)
         Me.NextDataSet.Name = "NextDataSet"
         Me.NextDataSet.Size = New System.Drawing.Size(36, 24)
