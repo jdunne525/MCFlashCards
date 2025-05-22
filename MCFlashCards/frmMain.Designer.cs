@@ -283,6 +283,7 @@
             // PrevDataSet
             // 
             PrevDataSet.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PrevDataSet.Enabled = false;
             PrevDataSet.Location = new Point(761, 7);
             PrevDataSet.Margin = new Padding(4, 3, 4, 3);
             PrevDataSet.Name = "PrevDataSet";
