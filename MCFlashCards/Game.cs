@@ -26,7 +26,7 @@ namespace MCFlashCards
 		public int NItemSetsInData;
 		private Item[] CardsInPlay = new Item[4];
 		private int CurrentItem;
-		private DataHandler Data;
+        public DataHandler Data;
 
 		private int LastCardShown;
 		public Game(DataHandler DHandler)
@@ -44,14 +44,18 @@ namespace MCFlashCards
 		{
 			GameRunning = false;
 			if (Data.NCards < 4) {
-				return false;
-				//Not enough cards to play.
-			}
+                if (Data.Cards[0].NWrongAnswers <= 0)
+                {
+                    //Not enough cards to play.
+                    //Interaction.MsgBox("Not enough cards to play");
+                    return false;
+                }
+            }
 
 			NItemSetsInData = (Data.NCards - 4) / 2 + 1;
 			//This works because NItemSetsInData MUST be > 4
 
-			LastCardShown = 3;
+            LastCardShown = 3;
 			//we're about to show cards 0 through 4:
 			for (int i = 0; i <= 3; i++) {
 				CardsInPlay[i] = Data.Cards[i];

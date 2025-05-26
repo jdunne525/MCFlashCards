@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace MCFlashCards
 {
 
@@ -118,7 +119,24 @@ namespace MCFlashCards
 
 			//Use Preserve keyword to retain the data within the resized array:
 			NCards = CardNum;
-			Array.Resize(ref Cards, CardNum);
+
+            //Force there to be at least 4 cards:
+            if (NCards < 4)
+            {
+                //initialize random number generator
+                Random r = new Random(System.DateTime.Now.Millisecond);
+
+                //For any cards that don't exist, just copy randomly from the cards that do exist
+                for (int i = NCards; i <= 3; i++)
+                {
+                    Cards[i] = Cards[r.Next(0, NCards - 1)];
+                }
+
+				CardNum = 4;
+            }
+
+
+            Array.Resize(ref Cards, CardNum);
 		}
 
 		public void LoadTxtFile(string FName)

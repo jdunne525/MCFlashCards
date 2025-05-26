@@ -170,7 +170,11 @@ namespace MCFlashCards
         {
             if (Data.NCards < 4)
             {
-                return;
+                if (Data.Cards[0].NWrongAnswers <= 0)
+                {
+                    //Interaction.MsgBox("Not enough cards to play");
+                    return;
+                }
             }
             if (myGame.StartGame())
             {
@@ -403,7 +407,7 @@ namespace MCFlashCards
                             //sw.WriteLine(Line)
                             //sw.WriteLine("""" + TestWordLabel.Text + """,""" + Card1.Text + """,""" + Card2.Text + """,""" + Card3.Text + """,""" + Card4.Text + """")
                             //sw.WriteLine(myGame.AnswerToDisplay.Question + "," + myGame.AnswerToDisplay.Answer + "," + Card2.Text + "," + Card3.Text + "," + Card4.Text)
-                            sw.WriteLine(myGame.AnswerToDisplay.Question + "," + myGame.AnswerToDisplay.Answer + "," + IncorrectAnswers[0] + "," + IncorrectAnswers[1] + "," + IncorrectAnswers[2]);
+                            sw.WriteLine("\"" + myGame.AnswerToDisplay.Question + "\",\"" + myGame.AnswerToDisplay.Answer + "\",\"" + IncorrectAnswers[0] + "\",\"" + IncorrectAnswers[1] + "\",\"" + IncorrectAnswers[2] + "\"");
 
                             sw.Close();
                             fso.Close();
@@ -563,6 +567,16 @@ namespace MCFlashCards
 
         private void RestartButton_Click(System.Object sender, System.EventArgs e)
         {
+
+            // Check if Ctrl and Shift keys are held  
+            if (((Control.ModifierKeys & Keys.Control) == Keys.Control) &&
+                (Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                NextDataSet.Enabled = true;
+                PrevDataSet.Enabled = true;
+                return;
+            }
+
             Streak = 0;
             //BestStreak = 0
             TotalFirstTryCorrect = 0;
@@ -627,14 +641,6 @@ namespace MCFlashCards
 
         private void PrevDataSet_Click(System.Object sender, System.EventArgs e)
         {
-            // Check if Ctrl and Shift keys are held  
-            if (((Control.ModifierKeys & Keys.Control) == Keys.Control) &&
-                (Control.ModifierKeys & Keys.Shift) == Keys.Shift)
-            {
-                NextDataSet.Enabled = true;
-                return;
-            }
-
             if ((myGame.GameRunning))
             {
                 if (myGame.SetItemSet(myGame.CurrentItemSet - 1))
