@@ -383,7 +383,8 @@ namespace MCFlashCards
                             // Line already exists, do not write it again
                             //return;
                         }
-                        else {
+                        else
+                        {
                             System.IO.FileStream fso = new System.IO.FileStream(ErrorFile, System.IO.FileMode.Append, System.IO.FileAccess.Write);
                             System.IO.StreamWriter sw = new System.IO.StreamWriter(fso);
 
@@ -1086,6 +1087,13 @@ namespace MCFlashCards
         private void frmMain_Load_2(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            //frmHelp.Show();
+            frmHelp frmHelp = new frmHelp();
+            frmHelp.Show();
         }
     }
 

@@ -37,7 +37,6 @@
             RestartButton = new Button();
             RandomCheckBox = new CheckBox();
             OpenButton = new Button();
-            ApplicationLabel = new Label();
             btnPrintPreview = new Button();
             TabPage2 = new TabPage();
             lblFlashCardStatus = new Label();
@@ -56,11 +55,9 @@
             Card1 = new Button();
             TabControl1 = new TabControl();
             TestWordLabel = new Label();
-            Label3 = new Label();
             Label1 = new Label();
             lblStreak = new Label();
             lblBestStreak = new Label();
-            Label2 = new Label();
             Label4 = new Label();
             lblTotalIncorrect = new Label();
             Label6 = new Label();
@@ -68,6 +65,7 @@
             Label8 = new Label();
             lblFirstTryCorrect = new Label();
             Label5 = new Label();
+            btnHelp = new Button();
             TabPage2.SuspendLayout();
             TabPage1.SuspendLayout();
             TabControl1.SuspendLayout();
@@ -124,18 +122,6 @@
             OpenButton.Text = "Open";
             OpenButton.UseVisualStyleBackColor = true;
             OpenButton.Click += OpenButton_Click;
-            // 
-            // ApplicationLabel
-            // 
-            ApplicationLabel.Font = new Font("Lucida Fax", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ApplicationLabel.Location = new Point(2, 2);
-            ApplicationLabel.Margin = new Padding(4, 0, 4, 0);
-            ApplicationLabel.Name = "ApplicationLabel";
-            ApplicationLabel.Size = new Size(751, 62);
-            ApplicationLabel.TabIndex = 28;
-            ApplicationLabel.Text = "Math Facts";
-            ApplicationLabel.TextAlign = ContentAlignment.MiddleCenter;
-            ApplicationLabel.Visible = false;
             // 
             // btnPrintPreview
             // 
@@ -372,19 +358,6 @@
             TestWordLabel.Text = "TestWordLabel";
             TestWordLabel.TextAlign = ContentAlignment.BottomCenter;
             // 
-            // Label3
-            // 
-            Label3.AutoSize = true;
-            Label3.Font = new Font("Microsoft Sans Serif", 111.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Label3.ForeColor = Color.FromArgb(192, 0, 0);
-            Label3.Location = new Point(588, -77);
-            Label3.Margin = new Padding(4, 0, 4, 0);
-            Label3.Name = "Label3";
-            Label3.Size = new Size(122, 169);
-            Label3.TabIndex = 33;
-            Label3.Text = "-";
-            Label3.Visible = false;
-            // 
             // Label1
             // 
             Label1.AutoSize = true;
@@ -414,19 +387,6 @@
             lblBestStreak.Size = new Size(13, 15);
             lblBestStreak.TabIndex = 36;
             lblBestStreak.Text = "0";
-            // 
-            // Label2
-            // 
-            Label2.AutoSize = true;
-            Label2.Font = new Font("Microsoft Sans Serif", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Label2.ForeColor = Color.FromArgb(0, 192, 0);
-            Label2.Location = new Point(63, -31);
-            Label2.Margin = new Padding(4, 0, 4, 0);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(101, 108);
-            Label2.TabIndex = 32;
-            Label2.Text = "+";
-            Label2.Visible = false;
             // 
             // Label4
             // 
@@ -498,6 +458,17 @@
             Label5.TabIndex = 43;
             Label5.Text = "First Try Correct %";
             // 
+            // btnHelp
+            // 
+            btnHelp.Location = new Point(737, 17);
+            btnHelp.Margin = new Padding(4, 3, 4, 3);
+            btnHelp.Name = "btnHelp";
+            btnHelp.Size = new Size(93, 28);
+            btnHelp.TabIndex = 25;
+            btnHelp.Text = "Help";
+            btnHelp.UseVisualStyleBackColor = true;
+            btnHelp.Click += btnHelp_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -513,10 +484,8 @@
             Controls.Add(lblBestStreak);
             Controls.Add(lblStreak);
             Controls.Add(Label1);
-            Controls.Add(Label3);
-            Controls.Add(Label2);
             Controls.Add(btnPrintPreview);
-            Controls.Add(ApplicationLabel);
+            Controls.Add(btnHelp);
             Controls.Add(OpenButton);
             Controls.Add(TestWordLabel);
             Controls.Add(TabControl1);
@@ -544,7 +513,6 @@
         internal System.Windows.Forms.Button RestartButton;
         internal System.Windows.Forms.CheckBox RandomCheckBox;
         internal System.Windows.Forms.Button OpenButton;
-        internal System.Windows.Forms.Label ApplicationLabel;
         internal System.Windows.Forms.Button btnPrintPreview;
         internal System.Windows.Forms.TabPage TabPage2;
         internal System.Windows.Forms.Label lblFlashCardStatus;
@@ -563,11 +531,9 @@
         internal System.Windows.Forms.Button Card1;
         internal System.Windows.Forms.TabControl TabControl1;
         internal System.Windows.Forms.Label TestWordLabel;
-        internal System.Windows.Forms.Label Label3;
         internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.Label lblStreak;
         internal System.Windows.Forms.Label lblBestStreak;
-        internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.Label Label4;
         internal System.Windows.Forms.Label lblTotalIncorrect;
         internal System.Windows.Forms.Label Label6;
@@ -575,5 +541,6 @@
         internal System.Windows.Forms.Label Label8;
         internal System.Windows.Forms.Label lblFirstTryCorrect;
         internal System.Windows.Forms.Label Label5;
+        internal Button btnHelp;
     }
 }
