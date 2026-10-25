@@ -554,7 +554,9 @@ namespace MCFlashCards
                     string header = null;
                     string result = null;
                     header = "FileName,Time,FirstTryCorrect,BestStreak,Streak,TotalCompleted,TotalIncorrect";
-                    result = ResultsFileName + "," + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "," + (TotalFirstTryCorrect / TotalCompleted * 100).ToString("0") + "," + BestStreak.ToString() + "," + Streak.ToString() + "," + TotalCompleted.ToString() + "," + TotalIncorrect.ToString();
+
+
+                    result = System.IO.Path.GetFileName(FileName) + "," + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "," + (TotalFirstTryCorrect * 100.0 / TotalCompleted).ToString("0") + "," + BestStreak.ToString() + "," + Streak.ToString() + "," + TotalCompleted.ToString() + "," + TotalIncorrect.ToString();
                     myGame.SaveResults(ResultsFileName, header, result);
 
                     MessageBox.Show("Done.");
