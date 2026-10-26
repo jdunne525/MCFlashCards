@@ -6,3 +6,4 @@ UpgradeLog.htm
 .vs/
 *.TMP
 MCFlashCards-unit-test.ini
+MCFlashCards/bin/Debug/net8.0-windows/MCFlashCards.ini
