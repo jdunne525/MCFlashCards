@@ -36,6 +36,8 @@
             ShowResultTimer = new System.Windows.Forms.Timer(components);
             RestartButton = new Button();
             RandomCheckBox = new CheckBox();
+            NtfyChannelTextBox = new TextBox();
+            NtfyChannelLabel = new Label();
             OpenButton = new Button();
             btnPrintPreview = new Button();
             TabPage2 = new TabPage();
@@ -111,6 +113,23 @@
             RandomCheckBox.TabIndex = 29;
             RandomCheckBox.Text = "All Random";
             RandomCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // NtfyChannelTextBox
+            // 
+            NtfyChannelTextBox.Location = new Point(737, 186);
+            NtfyChannelTextBox.Name = "NtfyChannelTextBox";
+            NtfyChannelTextBox.Size = new Size(172, 23);
+            NtfyChannelTextBox.TabIndex = 45;
+            // 
+            // NtfyChannelLabel
+            // 
+            NtfyChannelLabel.AutoSize = true;
+            NtfyChannelLabel.Location = new Point(737, 166);
+            NtfyChannelLabel.Name = "NtfyChannelLabel";
+            NtfyChannelLabel.Size = new Size(208, 15);
+            NtfyChannelLabel.TabIndex = 44;
+            NtfyChannelLabel.Text = "ntfy channel (blank = no notification):";
+            NtfyChannelLabel.Visible = false;
             // 
             // OpenButton
             // 
@@ -474,6 +493,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(919, 812);
+            Controls.Add(NtfyChannelLabel);
             Controls.Add(Label5);
             Controls.Add(lblFirstTryCorrect);
             Controls.Add(Label8);
@@ -490,6 +510,7 @@
             Controls.Add(TestWordLabel);
             Controls.Add(TabControl1);
             Controls.Add(RandomCheckBox);
+            Controls.Add(NtfyChannelTextBox);
             Controls.Add(RestartButton);
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmMain";
@@ -512,6 +533,8 @@
         internal System.Windows.Forms.Timer ShowResultTimer;
         internal System.Windows.Forms.Button RestartButton;
         internal System.Windows.Forms.CheckBox RandomCheckBox;
+        internal System.Windows.Forms.TextBox NtfyChannelTextBox;
+        internal System.Windows.Forms.Label NtfyChannelLabel;
         internal System.Windows.Forms.Button OpenButton;
         internal System.Windows.Forms.Button btnPrintPreview;
         internal System.Windows.Forms.TabPage TabPage2;

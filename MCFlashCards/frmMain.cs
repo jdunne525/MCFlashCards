@@ -16,6 +16,7 @@ namespace MCFlashCards
         private string FileName;
         public DataHandler Data;
         public Game myGame;
+        private static Settings MySettings;
 
         private bool LastAnswer;
         public bool PrintQuestions;
@@ -53,6 +54,12 @@ namespace MCFlashCards
         private void frmMain_Load(System.Object sender, System.EventArgs e)
         {
             FileName = Application.StartupPath + "\\test.csv";
+
+            //Read the settings, which are kept in MCFlashCards.ini next to the .exe,
+            //and show the ntfy channel on the form so it can be changed there.
+            MySettings = new Settings();
+            NtfyChannelTextBox.Text = MySettings.NtfyChannel;
+
             ShowQuestion = true;
             FlashCardIndex = 0;
 
@@ -104,8 +111,19 @@ namespace MCFlashCards
             StartGame();
         }
 
+        private void SaveNtfyChannel()
+        {
+            //Copy the channel typed on the form into the settings, which are kept in
+            //the file next to the .exe, so the setting always matches the form.
+            if (MySettings != null)
+            {
+                MySettings.SetNtfyChannel(NtfyChannelTextBox.Text);
+            }
+        }
+
         private void OpenButton_Click(System.Object sender, System.EventArgs e)
         {
+            SaveNtfyChannel();
             //OpenFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
             OpenFileDialog1.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
             OpenFileDialog1.InitialDirectory = Application.StartupPath;
@@ -559,6 +577,16 @@ namespace MCFlashCards
                     result = System.IO.Path.GetFileName(FileName) + "," + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "," + (TotalFirstTryCorrect * 100.0 / TotalCompleted).ToString("0") + "," + BestStreak.ToString() + "," + Streak.ToString() + "," + TotalCompleted.ToString() + "," + TotalIncorrect.ToString();
                     myGame.SaveResults(ResultsFileName, header, result);
 
+                    //The set has been completed: tell the ntfy channel about it.
+                    //Nothing at all is sent when the channel is blank.
+                    SaveNtfyChannel();
+                    if (MySettings != null)
+                    {
+                        MySettings.SendNotification(
+                            "MCFlashCards set completed",
+                            "Set completed: " + Data.Description + ", first try correct " + (TotalFirstTryCorrect * 100.0 / TotalCompleted).ToString("0") + "%, best streak " + BestStreak + ", completed " + TotalCompleted + ", incorrect " + TotalIncorrect);
+                    }
+
                     MessageBox.Show("Done.");
 
                     //restart:
@@ -570,6 +598,7 @@ namespace MCFlashCards
 
         private void RestartButton_Click(System.Object sender, System.EventArgs e)
         {
+            SaveNtfyChannel();
 
             // Check if Ctrl and Shift keys are held  
             if (((Control.ModifierKeys & Keys.Control) == Keys.Control) &&
